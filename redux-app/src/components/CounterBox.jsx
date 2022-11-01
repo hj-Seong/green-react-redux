@@ -1,9 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import { increase } from "../modules/counter";
+import { change, increase } from "../modules/counter";
 
 const CounterBox = () => {
     // useSelector를 통해서 state의 원하는 값을 가져올수 있다
-    const number = useSelector((state)=>(state.number))
+    const number = useSelector((state)=>(state.counter.number))
+    const changeNum = useSelector((state)=>(state.counter.changeNum))
+
     // useDispatch를 통해서 사용할 함수를 가져옴
     const dispatch = useDispatch();
     return (  
@@ -21,6 +23,12 @@ const CounterBox = () => {
             </button>
             {/** counter의 리듀서 함수를 수정해서 1씩 감소하는 버튼작성 */}
             <button onClick={()=>{dispatch({type:"decrease"})}}>감소</button>
+
+            {/** changeNum값을 바꿀 input */}
+            <p>{changeNum}</p>
+            <input type="text" onChange={(e)=>{dispatch({type:"change", payload :e.target.value })}}/>
+            <input type="text" onChange={(e)=>{dispatch( change(e.target.value) )}}/>
+
         </div>
     );
 }

@@ -10,9 +10,11 @@ import {Provider} from "react-redux"
 import { createStore } from 'redux';
 // store에 추가할 couner state와 action
 import counter from './modules/counter';
+// rootReducer를 통해 한번에 묶어서 사용가능
+import rootReducer from './modules';
 
 //createStore를 이용하여 store 생성
-const store = createStore(counter)
+const store = createStore(rootReducer)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
