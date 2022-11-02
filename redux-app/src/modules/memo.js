@@ -13,6 +13,8 @@ const initalState = {
 // 리듀서값 작성
 function memo(state=initalState, action) {
     switch(action.type) {
+        case "addMemo":
+            return
         default:
             return state;
     }
