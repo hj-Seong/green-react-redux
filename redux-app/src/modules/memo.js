@@ -13,7 +13,8 @@ const initalState = {
 // 액션타입을 함수로 만들어서 내보내줌
 // addmemo에서 받아오는 매개변수 memo는 {title: "", text:""}의 형태로 사용할 예정
 export const addmemo = (memo) => ({type:"addMemo", payload: memo})
-
+// deltememo에서 받아오는 매개변수 id는 3과 같은 숫자값을 사용할 예정
+export const deletememo = (id) => ({type:"deleteMemo", payload : id})
 
 
 // 리듀서값 작성
@@ -30,6 +31,14 @@ function memo(state=initalState, action) {
             // 새로운 메모를 가지는 리스트
             const newMemoList = state.memolist.concat(newMemo)
             return { ...state, memolist : newMemoList, id : state.id+1}
+
+        case "deleteMemo":
+            // memo id를 가져와서, id값을 가진 메모를 제외하고 새로운 메모리스트생성
+            return {
+                ...state,
+                                        // payload:3 (id값 하나만 들어가 있음)
+                memolist : state.memolist.filter((memo)=>memo.id != action.payload)
+            }
         default:
             return state;
     }
