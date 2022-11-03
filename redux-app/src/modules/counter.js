@@ -15,7 +15,7 @@ export const change = (value) => ({type:"change" , payload : value})
  * thunk를 사용하여 비동기로 실행하는 액션함수를 만들수 있다.
  * thunk의 형식을 사용했기 때문에, 바로 dispatch를 사용하는게 아니라
  * 나중에 추가해서 사용할 수 있다
- * thunck 사용형태 : export const 함수이름 = () => (dispatch) =>{}
+ * thunk 사용형태 : export const 함수이름 = () => (dispatch) => {}
  */
 export const increaseAsync = () => (dispatch) => {
     // dispatch를 실행하기전에 진행할 내용 작성
@@ -26,6 +26,11 @@ export const increaseAsync = () => (dispatch) => {
     // 위에 미리 작성한 액션함수를 사용해서 전달
     setTimeout(()=>{ dispatch(increase()) }, 1000);
 
+}
+/** Thunk를 사용해서 비동기 함수인 setTimer 사용 */
+export const decreaseAsync = () => (dispatch)=>{
+                            // 액션값을 객체로 전달
+    setTimeout(()=>{ dispatch( {type:"decrease"} ) }, 2000)
 }
 
 
