@@ -10,8 +10,10 @@ const initalState = {
 export const getNews = () => async (dispatch) => {
     dispatch({type:"startLoad"});
     const response = await fetch("https://newsapi.org/v2/top-headlines?country=kr&apiKey=c4c09dd0ba45435cb60e93cd10259c2a")
-    const body = response.json();
-    console.log(body);
+    const body = await response.json();
+    if ( body.status == 'ok') {
+        dispatch({type:"getNews", payload : body.articles})
+    }
     dispatch({type:"endLoad"});
 }
 
