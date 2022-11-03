@@ -13,10 +13,14 @@ import { createStore, applyMiddleware } from 'redux';
 import counter from './modules/counter';
 // rootReducer를 통해 한번에 묶어서 사용가능
 import rootReducer from './modules';
-import loggerMiddleware from './lib/loggerMiddleware';
+
+// 미들웨어를 작성 및 설치 후 추가
+//import loggerMiddleware from './lib/loggerMiddleware';
+import logger from 'redux-logger';
+import thunk from 'redux-thunk';
 
 //createStore를 이용하여 store 생성
-const store = createStore(rootReducer, applyMiddleware(loggerMiddleware))
+const store = createStore(rootReducer, applyMiddleware(logger, thunk))
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
