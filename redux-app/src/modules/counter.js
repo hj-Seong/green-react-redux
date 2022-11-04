@@ -43,7 +43,8 @@ export const decreaseAsync = () => (dispatch)=>{
  * 리덕스 사가는 자바스크립트의 제너레이터함수를 사용한다
  * function* () {}, next()와 yield를 이용하여 함수를 부분 실행
  */
-function* increaseSaga() {
+function* increaseSaga(action) {
+    console.log(action)
     yield delay(1000); // 1초기다림
     yield put({type:"increase"}) // 액션을 실행(disoatch) 
 }
@@ -60,8 +61,8 @@ export function* counterSaga() {
     yield takeEvery("decreaseAsync", decreaseSaga)
 }
 
-// 리덕스 사가를 실행하기위한 액션함수
-export const increaseSagaAsync = () => ({type:"increaseAsync"});
+// 리덕스 사가를 실행하기위한 액션함수 >> saga도 payload를 통해 값을 가져올수 있다
+export const increaseSagaAsync = () => ({type:"increaseAsync" , payload:10});
 export const decreaseSagaAsync = () => ({type:"decreaseAsync"})
 
 
