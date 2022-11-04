@@ -47,16 +47,22 @@ function* increaseSaga() {
     yield delay(1000); // 1초기다림
     yield put({type:"increase"}) // 액션을 실행(disoatch) 
 }
+function* decreaseSaga() {
+    yield delay(2000);
+    yield put(decrease());
+}
+
 
 // 만들어준 saga를 내보내주는 함수
 export function* counterSaga() {
     // takeEvery는 모든 "increase"를 처리
     yield takeEvery("increaseAsync", increaseSaga);
+    yield takeEvery("decreaseAsync", decreaseSaga)
 }
 
 // 리덕스 사가를 실행하기위한 액션함수
 export const increaseSagaAsync = () => ({type:"increaseAsync"});
-
+export const decreaseSagaAsync = () => ({type:"decreaseAsync"})
 
 
 // 리듀서 함수
