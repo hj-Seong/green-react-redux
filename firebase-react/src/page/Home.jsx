@@ -18,8 +18,11 @@ const Home = () => {
         const token = credential.accessToken;
         // 로그인된 결과 중에서 user를 통해서 관련 정보를 가져올수 있다
         const user = result.user;
-        console.log(user) 
-        navigater('/user');
+        navigater('/user', {state:{
+            name : user.displayName,
+            email : user.email,
+            photo : user.photoURL
+        }});
       })
       .catch((error) => {
         // 
