@@ -22,7 +22,6 @@ const User = () => {
             <p>{location.state.name}</p>
             <p>{location.state.email}</p>
             <img src={location.state.photo} alt="" />
-
             <hr />
             <button onClick={loginout}>로그아웃</button>
         </div>
