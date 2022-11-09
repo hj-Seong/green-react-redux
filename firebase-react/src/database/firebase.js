@@ -7,6 +7,8 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
+
+  // 본인의 인증키를 넣어서 확인하기
   apiKey: "AIzaSyDiYHs09HlAw5gMSnIqfq94ZVyM18eMjCE",
   authDomain: "fir-login-89c25.firebaseapp.com",
   projectId: "fir-login-89c25",
