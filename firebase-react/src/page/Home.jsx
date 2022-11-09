@@ -18,6 +18,7 @@ const Home = () => {
         const token = credential.accessToken;
         // 로그인된 결과 중에서 user를 통해서 관련 정보를 가져올수 있다
         const user = result.user;
+        // 받아온 user값 중에서 필요한 값만 리덕스, ContextAPI, state에 저장하여 사용할수 있다.
         navigater('/user', {state:{
             name : user.displayName,
             email : user.email,
@@ -25,10 +26,10 @@ const Home = () => {
         }});
       })
       .catch((error) => {
-        // 
+        // 에러코드 받아오가
         const errorCode = error.code;
         const errorMessage = error.message;
-        // 
+        // 에러메시지 받아오기
         const email = error.customData.email;
         // 
         const credential = GoogleAuthProvider.credentialFromError(error);
