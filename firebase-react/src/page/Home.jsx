@@ -2,7 +2,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import {useNavigate} from 'react-router-dom'
 
 const Home = () => {
-    const navigater = useNavigate();
+  const navigater = useNavigate();
 
   // 구글로 로그인하기 버튼을 눌렀을때 파이어스토어를 들고와서 사용
   const googleLogin = () => {
@@ -23,7 +23,7 @@ const Home = () => {
             name : user.displayName,
             email : user.email,
             photo : user.photoURL
-        }});
+          }});
       })
       .catch((error) => {
         // 에러코드 받아오가
@@ -31,7 +31,7 @@ const Home = () => {
         const errorMessage = error.message;
         // 에러메시지 받아오기
         const email = error.customData.email;
-        // 
+        //
         const credential = GoogleAuthProvider.credentialFromError(error);
 
       });
@@ -40,6 +40,9 @@ const Home = () => {
   return (
     <div>
       <h1>홈입니다</h1>
+      <button onClick={ ()=>{navigater("/login")}}>
+        이메일로 회원가입 또는 로그인 페이지로 이동 
+      </button>
       <button onClick={googleLogin}> 구글로 로그인하기 </button>
     </div>
   );
