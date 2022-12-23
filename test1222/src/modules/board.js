@@ -21,9 +21,19 @@ const initalState = [
 // 리듀서 함수
 function board (state = initalState, action) {
     switch (action.type) {
+        case "deleteBoard" :
+            // board의 id값을 들고와서 그 id를 제외한 새로운 배열
+            const newboardList = state.filter(
+                (board)=>(board.boardId !== action.payload)
+                )
+            return newboardList;
         default : 
             return state;
     }
 } 
+// 액션함수
+export const deleteBoard =
+                (id) =>({type:"deleteBoard", payload:id})
+
 
 export default board;
