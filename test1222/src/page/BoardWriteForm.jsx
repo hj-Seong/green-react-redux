@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { modifyBoard } from "../modules/board";
 
 const BoardPage = () => {
     const location =useLocation();
@@ -9,6 +11,14 @@ const BoardPage = () => {
     const onChange = (e) => {
         setBoard({...board, [e.target.name]: e.target.value })
     }
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    // 수정완료버튼을 눌렸을 실행하는 함수
+    const onModifyBoard = () =>{
+        dispatch(modifyBoard(board));
+        navigate('/board/'+board.boardId);
+    }
+
     
     return ( 
         <div>
@@ -16,7 +26,7 @@ const BoardPage = () => {
                 <span>{board.boardId}</span>
                     <input onChange={onChange} name="title" value={board.title}></input>
                 <div>
-                    <button>수정</button>
+                    <button onClick={onModifyBoard}>수정완료</button>
                 </div>
                 <div>
                     <p>{board.userEmail}</p>
